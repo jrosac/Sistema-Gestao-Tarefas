@@ -14,3 +14,7 @@ Route::post('/cadastro', function () {
 Route::get('/listagem', function () {
     return view('/funcionarios/listagem');
 });
+
+Route::get('/pagina_funcionario', function () {
+    return view('/funcionarios/pagina_individual');
+});
