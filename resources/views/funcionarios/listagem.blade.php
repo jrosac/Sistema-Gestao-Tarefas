@@ -9,5 +9,25 @@
 <body>
     <h1>Página de listagem de funcionários</h1>
 
+    <br><hr>
+
+    <table>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>D. de nascimento</th>
+        <th>Cargo</th>
+     </tr>
+
+     <tr>
+        <td><a href="/pagina_individual.blade.php"></a></td>
+        <td>XX.XXX.XXX-XX</td>
+        <td>XX/XX/XXXX</td>
+        <td>Desenvolvedor</td>
+     </tr>
+
+
+    </table>
+
 </body>
 </html>
