@@ -17,18 +17,27 @@
             <h1>Formulário de cadastro</h1>
 
             <form method="POST">
+                @csrf
 
                 <label for="nome">Digite seu nome:</label>
                 <input type="text" placeholder="Ex: Fábio dos santos" name="nome" required>
 
+                <br><br>
+
                 <label for="data-nascimento">Selecione sua data de nascimento:</label>
                 <input type="date" name="data-nascimento" required>
+
+                <br><br>
 
                 <label for="cpf">Digite seu CPF</label>
                 <input type="text" placeholder="Ex: 000.000.000-00" name="cpf" required>
 
+                <br><br>
+
                 <label for="nome-cargo">Digite seu cargo</label>
                 <input type="text" placeholder="Ex: Desenvolvedor front-end" name="nome-cargo" required>
+
+                <br><br>
 
                 <input type="submit" value="Cadastrar">
 
