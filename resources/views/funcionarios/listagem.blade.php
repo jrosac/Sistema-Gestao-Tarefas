@@ -20,7 +20,7 @@
      </tr>
 
      <tr>
-        <td><a href="/pagina_individual.blade.php"></a></td>
+        <td><a href="/pagina_funcionario">Fulano da silva</a></td>
         <td>XX.XXX.XXX-XX</td>
         <td>XX/XX/XXXX</td>
         <td>Desenvolvedor</td>
