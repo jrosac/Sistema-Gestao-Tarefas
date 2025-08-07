@@ -41,9 +41,7 @@
 
                 <input type="submit" value="Cadastrar">
 
-                <butto></button>
-
-            </form>
+           </form>
 
 
         </div>
