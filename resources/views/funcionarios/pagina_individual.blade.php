@@ -39,7 +39,7 @@
 
              <br><br>
              <div class="btn">
-             <button>Atualizar Dados</button>
+             <button><a href="atualiza_funcionario">Atualizar dados</a></button>
              <button>Deletar funcionário</button>
 
              </div>
