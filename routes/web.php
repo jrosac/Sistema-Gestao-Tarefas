@@ -2,9 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('/welcome');
+});
+
+
+
 Route::get('/cadastro', function () {
     return view('/funcionarios/cadastro');
-});
+})->name("funcionario.cadastro");
 
 Route::post('/cadastro', function () {
 
@@ -27,3 +33,7 @@ Route::post('/atualiza_funcionario', function () {
 
     return redirect('/pagina_funcionario');
 });
+
+Route::get('/cadastro_tarefa', function () {
+    return view('/tarefas/cadastro');
+})->name("tarefa.cadastro");
