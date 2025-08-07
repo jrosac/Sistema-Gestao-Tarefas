@@ -18,3 +18,12 @@ Route::get('/listagem', function () {
 Route::get('/pagina_funcionario', function () {
     return view('/funcionarios/pagina_individual');
 });
+
+Route::get('/atualiza_funcionario', function () {
+    return view('/funcionarios/atualizacao');
+});
+
+Route::post('/atualiza_funcionario', function () {
+
+    return redirect('/pagina_funcionario');
+});
