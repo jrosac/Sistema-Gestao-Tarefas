@@ -30,7 +30,7 @@
                 <br><br>
 
                 <label for="data">selecione a data de entrega da tarefa</label>
-                <input type="datetime"  name="data" required>
+                <input type="date"  name="data" required>
 
                 <br><br>
 
