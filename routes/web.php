@@ -34,6 +34,25 @@ Route::post('/atualiza_funcionario', function () {
     return redirect('/pagina_funcionario');
 });
 
+
+
 Route::get('/cadastro_tarefa', function () {
     return view('/tarefas/cadastro');
 })->name("tarefa.cadastro");
+
+Route::post('/cadastro_tarefa', function () {
+
+    return redirect('/listagem_tarefa');
+});
+
+Route::get('/listagem_tarefa', function () {
+    return view('/tarefas/listagem');
+})->name("tarefa.listagem");
+
+Route::get('/pagina_individual_tarefa', function () {
+    return view('/tarefas/pagina_individual');
+})->name("tarefa.pagina_individual");
+
+Route::get('/atualiza_tarefa', function () {
+    return view('/tarefas/atualizacao');
+})->name("tarefa.atualizacao");
