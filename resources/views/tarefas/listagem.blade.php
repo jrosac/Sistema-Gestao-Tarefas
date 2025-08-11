@@ -20,7 +20,7 @@
      </tr>
 
      <tr>
-        <td><a href="/pagina_tarefa">Testar o ambiente de desenvolvimento</a></td>
+        <td><a href={{route("tarefa.pagina_individual")}}>Testar o ambiente de desenvolvimento</a></td>
         <td>Utilizar o docker para baixar as dependecias e testar a aplicação em um ambiente isolado</td>
         <td>XX/XX/XXXX</td>
         <td>A fazer</td>
