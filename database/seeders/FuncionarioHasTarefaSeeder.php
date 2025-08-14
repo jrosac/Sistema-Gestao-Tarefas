@@ -17,5 +17,25 @@ class FuncionarioHasTarefaSeeder extends Seeder
             "funcionario_id" => 1,
             "tarefa_id" => 1,
         ]);
+
+        DB::table("funcionarios_has_tarefas")->insert([
+            "funcionario_id" => 1,
+            "tarefa_id" => 2,
+        ]);
+
+        DB::table("funcionarios_has_tarefas")->insert([
+            "funcionario_id" => 1,
+            "tarefa_id" => 3,
+        ]);
+
+        DB::table("funcionarios_has_tarefas")->insert([
+            "funcionario_id" => 2,
+            "tarefa_id" => 3,
+        ]);
+
+        DB::table("funcionarios_has_tarefas")->insert([
+            "funcionario_id" => 3,
+            "tarefa_id" => 3,
+        ]);
     }
 }

@@ -19,7 +19,26 @@ class EnderecoSeeder extends Seeder
             "cidade" => "Porto de galinhas",
             "estado" => "Pernambuco",
             "funcionario_id" => 1,
+        ]);
 
+        DB::table("enderecos")->insert([
+            "logradouro" => "Rua do carvalho dourado",
+            "numero" => "200",
+            "cidade" => "Porto de galinhas",
+            "estado" => "Pernambuco",
+            "funcionario_id" => 2,
+        ]);
+
+        DB::table("enderecos")->insert([
+            "logradouro" => "Rua do carvalho dourado",
+            "numero" => "250",
+            "cidade" => "Porto de galinhas",
+            "estado" => "Pernambuco",
+            "funcionario_id" => 3,
         ]);
     }
+
+
+
+
 }

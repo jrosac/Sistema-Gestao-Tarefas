@@ -21,5 +21,21 @@ class TarefaSeeder extends Seeder
             "status_id" => 1,
 
         ]);
+
+        DB::TABLE("tarefas")->insert([
+            "titulo" => "Implementar sistema de navegação de páginas",
+            "descricao" => "implementar o sistema de navegação de páginas utilizando o laravel pagination",
+            "data_entrega" => Carbon::create(2025, 11, 15),
+            "status_id" => 2,
+
+        ]);
+
+        DB::TABLE("tarefas")->insert([
+            "titulo" => "Atualizar a navbar da landing page",
+            "descricao" => "Atualizar a navbar da landing page para incluir links para as páginas de login e registro",
+            "data_entrega" => Carbon::create(2025, 11, 15),
+            "status_id" => 3,
+
+        ]);
     }
 }
