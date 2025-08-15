@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página de cadastro de tarefas</title>
-</head>
-<body>
+@extends('layouts.admin')
 
-       <div class="content">
+@section('content')
+
+ <div class="content">
 
         <h1>Página de cadastro de tarefas</h1>
 
@@ -46,5 +40,4 @@
 
     </div>
 
-</body>
-</html>
+@endsection
