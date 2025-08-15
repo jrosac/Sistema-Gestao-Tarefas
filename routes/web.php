@@ -19,7 +19,7 @@ Route::post('/cadastro', function () {
 
 Route::get('/listagem', function () {
     return view('/funcionarios/listagem');
-});
+})->name('funcionario.listagem');
 
 Route::get('/pagina_funcionario', function () {
     return view('/funcionarios/pagina_individual');
