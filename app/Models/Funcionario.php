@@ -8,6 +8,10 @@ class Funcionario extends Model
 {
     protected $table = "funcionarios";
 
+    public function firstname(){
+        return explode(" ", $this->nome)[0];
+    }
+
     public function endereco(){
         return $this->hasOne(Endereco::class, "funcionario_id");
     }
@@ -15,4 +19,6 @@ class Funcionario extends Model
     public function tarefas(){
         return $this->belongsToMany(Tarefa::class,'funcionarios_has_tarefas', 'funcionario_id', 'tarefa_id');
     }
+
+
 }
