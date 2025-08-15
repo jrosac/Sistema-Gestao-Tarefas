@@ -9,7 +9,7 @@ class Funcionario extends Model
     protected $table = "funcionarios";
 
     public function endereco(){
-        return $this->hasMany(Endereco::class, "funcionario_id");
+        return $this->hasOne(Endereco::class, "funcionario_id");
     }
 
     public function tarefas(){
