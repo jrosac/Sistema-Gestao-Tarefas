@@ -1,16 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página de Home</title>
-</head>
-<body>
-<h1> Página de boas vindas </h1>
-<a href="{{route('funcionario.cadastro') }}">Cadastrar Funcionario</a>
-<br><br>
-<a href="{{route('tarefa.cadastro') }}">Cadastrar Tarefa</a>
+@extends('layouts.admin')
 
-</body>
-</html>
+@section('content')
+
+<h1 class="text-3xl font-bold text-center mt-8">Página de boas-vindas</h1>
+
+<div class="mt-6 text-center text-gray-700 max-w-2xl mx-auto px-4">
+    <p class="mb-4">
+        Seja bem-vindo ao nosso sistema de gerenciamento! Aqui você pode cadastrar, visualizar, editar
+        e acompanhar todas as informações sobre funcionários e tarefas de forma prática e organizada.
+    </p>
+    <p class="mb-4">
+        Nosso objetivo é facilitar o seu trabalho, oferecendo ferramentas simples e eficientes para manter
+        tudo sob controle. Através desta plataforma, você pode centralizar informações importantes e
+        melhorar o fluxo de trabalho da sua equipe.
+    </p>
+    <p>
+        Para começar, escolha uma das opções abaixo e inicie o cadastro.
+        É rápido, seguro e você terá acesso a todos os registros sempre que precisar.
+    </p>
+</div>
+
+<div class="mt-8 flex flex-col items-center gap-4">
+    <a href="{{ route('funcionario.cadastro') }}"
+       class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition">
+        Cadastrar Funcionário
+    </a>
+
+    <a href="{{ route('tarefa.cadastro') }}"
+       class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition">
+        Cadastrar Tarefa
+    </a>
+</div>
+
+
+
+@endsection
