@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('numero');
             $table->string('cidade');
             $table->string('estado');
-            $table->foreignId('funcionario_id')->constrained('funcionarios');
+            $table->foreignId('funcionario_id')->constrained('funcionarios')->onDelete('cascade');
             $table->timestamps();
         });
     }

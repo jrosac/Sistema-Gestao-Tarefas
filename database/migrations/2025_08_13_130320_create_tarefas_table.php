@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('descricao');
             $table->date('data_entrega');
-            $table->foreignId('status_id')->constrained('status');
+            $table->foreignId('status_id')->constrained('status')->onDelete('cascade');
             $table->timestamps();
         });
     }
