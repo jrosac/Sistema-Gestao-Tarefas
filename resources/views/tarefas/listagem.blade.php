@@ -24,7 +24,7 @@
                 <tbody class="bg-white divide-y divide-gray-100">
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-medium">
-                            <a href="/pagina_funcionario" class="hover:underline text-black">Testar ambiente de Desenvolvimetno</a>
+                            <a href="{{route("tarefa.pagina_individual")}}" class="hover:underline text-black">Testar ambiente de Desenvolvimetno</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 truncate">Utilizar o docker para baixar as dependecias e testar a aplicação em um ambiente isolado</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XX/XX/XXXX</td>
