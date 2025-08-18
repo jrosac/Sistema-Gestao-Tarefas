@@ -27,7 +27,7 @@ Route::get('/pagina_funcionario', function () {
 
 Route::get('/atualiza_funcionario', function () {
     return view('/funcionarios/atualizacao');
-});
+})->name("funcionario.atualizacao");
 
 Route::post('/atualiza_funcionario', function () {
 
