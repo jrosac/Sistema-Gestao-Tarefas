@@ -2,52 +2,102 @@
 
 @section('content')
 
-    <div class="content">
+<div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+  <div class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Página individual do funcionário</h1>
 
-    <h1>Página individual do funcionário</h1>
+    <hr class="mb-6 border-gray-200">
 
-    <br><hr>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <div class="card">
+      <!-- Informações -->
+      <div class="bg-gray-50 rounded-lg p-5">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Informações do funcionário</h2>
 
-        <h2>Informações do funcionário</h2>
+        <div class="space-y-3 text-sm text-gray-700">
+          <div>
+            <p class="text-xs text-gray-500">Nome</p>
+            <p class="font-medium text-gray-900">João da Silva</p>
+          </div>
 
-        <div class="info">
-             <p><h3>Nome:</h3>Fulano da silva</p>
-             <p><h3>CPF:</h3>XXX.XXX.XXX-XX</p>
-             <p><h3>Data de nascimento:</h3>XX/XX/XXXX</p>
-             <p><h3>Cargo:</h3>Desenvolvedor</p>
-             <p><h3>Logradouro:</h3>Alameda das florestas</p>
-             <p><h3>Número:</h3>941</p>
-             <p><h3>Cidade:</h3>Aracaju</p>
-             <p><h3>Estado</h3>Sergipe</p>
+          <div>
+            <p class="text-xs text-gray-500">CPF</p>
+            <p class="font-medium text-gray-900">123.456.789-00</p>
+          </div>
 
-             <div class="tasks">
-                <h2>Tarefas atribuidas:</h2>
-                <p>xxxxxxx</p>
-                <p>xxxxxxx</p>
-                <p>xxxxxxx</p>
-            <button>Editar tarefas</button>
+          <div>
+            <p class="text-xs text-gray-500">Data de nascimento</p>
+            <p class="font-medium text-gray-900">15/04/1990</p>
+          </div>
 
-             </div>
+          <div>
+            <p class="text-xs text-gray-500">Cargo</p>
+            <p class="font-medium text-gray-900">Desenvolvedor Front-end</p>
+          </div>
 
-             <br><br>
-             <div class="btn">
-             <button><a href="atualiza_funcionario">Atualizar dados</a></button>
-             <button>Deletar funcionário</button>
+          <div class="mt-4 pt-4 border-t border-gray-200">
+            <p class="text-sm font-semibold text-gray-600 mb-2">Endereço</p>
 
-             </div>
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <p class="text-xs text-gray-500">Logradouro</p>
+                <p class="font-medium text-gray-900">Rua Major Santos Guedes</p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500">Número</p>
+                <p class="font-medium text-gray-900">941</p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500">Cidade</p>
+                <p class="font-medium text-gray-900">Aracaju</p>
+              </div>
+              <div>
+                <p class="text-xs text-gray-500">Estado</p>
+                <p class="font-medium text-gray-900">Sergipe</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- Tarefas -->
+      <div class="bg-white rounded-lg p-5 border border-gray-100 shadow-sm">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Tarefas atribuídas</h2>
 
+        <div class="space-y-3 text-sm text-gray-700 mb-4">
+          <ul class="list-disc list-inside space-y-1">
+            <li>Corrigir bug no formulário de login <strong>A fazer</strong></li>
+            <li>Implementar validação de CPF <strong>Feito</strong> </li>
+            <li>Atualizar documentação do módulo de tarefas <strong>Fazendo</strong> </li>
+          </ul>
+        </div>
 
-
-
-       </div>
+        <div class="mt-auto flex justify-center md:justify-start gap-3">
+          <a href="#" class="inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow">
+            Editar Status
+          </a>
+        </div>
+      </div>
 
     </div>
 
+    <!-- Ações -->
+    <div class="mt-6 flex justify-center gap-3">
+      <a href="#" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
+        Atualizar dados
+      </a>
 
-
+      <form action="#" method="POST" onsubmit="return confirm('Deseja realmente deletar este funcionário?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer">
+          Deletar funcionário
+        </button>
+      </form>
     </div>
+
+  </div>
+</div>
 
 @endsection
+
