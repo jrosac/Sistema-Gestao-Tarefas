@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('/welcome');
-});
+})->name("home");
 
 
 
@@ -19,7 +19,7 @@ Route::post('/cadastro', function () {
 
 Route::get('/listagem', function () {
     return view('/funcionarios/listagem');
-});
+})->name('funcionario.listagem');
 
 Route::get('/pagina_funcionario', function () {
     return view('/funcionarios/pagina_individual');
@@ -27,7 +27,7 @@ Route::get('/pagina_funcionario', function () {
 
 Route::get('/atualiza_funcionario', function () {
     return view('/funcionarios/atualizacao');
-});
+})->name("funcionario.atualizacao");
 
 Route::post('/atualiza_funcionario', function () {
 

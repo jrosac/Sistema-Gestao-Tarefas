@@ -1,33 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Página de listagem de tarefas</title>
-</head>
-<body>
-    <h1>Página de listagem de tarefas</h1>
+@extends('layouts.admin')
 
-    <br><hr>
+@section('content')
 
-    <table>
-      <tr>
-        <th>Nome</th>
-        <th>Detalhes</th>
-        <th>Data de entrega</th>
-        <th>Status</th>
-     </tr>
+<div class="max-w-6xl mx-auto p-6">
 
-     <tr>
-        <td><a href={{route("tarefa.pagina_individual")}}>Testar o ambiente de desenvolvimento</a></td>
-        <td>Utilizar o docker para baixar as dependecias e testar a aplicação em um ambiente isolado</td>
-        <td>XX/XX/XXXX</td>
-        <td>A fazer</td>
-     </tr>
+        <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Tarefas</h1>
 
 
-    </table>
 
-</body>
-</html>
+    <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dealhes</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">D. de entrega</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+
+                    </tr>
+                </thead>
+
+                <tbody class="bg-white divide-y divide-gray-100">
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-medium">
+                            <a href="{{route("tarefa.pagina_individual")}}" class="hover:underline text-black">Testar ambiente de Desenvolvimetno</a>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 truncate">Utilizar o docker para baixar as dependecias e testar a aplicação em um ambiente isolado</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XX/XX/XXXX</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">A fazer</td>
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+@endsection
