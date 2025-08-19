@@ -2,6 +2,7 @@
 
 @section('content')
 
+{{$contatos}}
 <div class="max-w-6xl mx-auto p-6">
 
         <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Funcionários</h1>
@@ -24,7 +25,7 @@
                 <tbody class="bg-white divide-y divide-gray-100">
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-medium">
-                            <a href="/pagina_funcionario" class="hover:underline text-black ">Fulano da Silva</a>
+                        <a href="/pagina_funcionario" class="hover:underline text-black ">Fulano da Silva</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XX.XXX.XXX-XX</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XX/XX/XXXX</td>
