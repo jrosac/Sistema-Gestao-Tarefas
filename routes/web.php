@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\FuncionarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('/welcome');
 })->name("home");
 
-
+//--------------------------------------------------------
 
 Route::get('/cadastro', function () {
     return view('/funcionarios/cadastro');
@@ -17,9 +18,7 @@ Route::post('/cadastro', function () {
     return redirect('/listagem');
 });
 
-Route::get('/listagem', function () {
-    return view('/funcionarios/listagem');
-})->name('funcionario.listagem');
+Route::get('/index-funcionario',[FuncionarioController::class,'index'])->name('funcionario.index');
 
 Route::get('/pagina_funcionario', function () {
     return view('/funcionarios/pagina_individual');
@@ -33,6 +32,8 @@ Route::post('/atualiza_funcionario', function () {
 
     return redirect('/pagina_funcionario');
 });
+
+// -----------------------------------------------------------
 
 
 
