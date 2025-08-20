@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tarefa;
 
 class TarefaController extends Controller
 {
 
     public function __construct(Tarefa $tarefas)
     {
-        $this->tarefa = $tarefas;
+        $this->tarefas = $tarefas;
 
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tarefas = $this->tarefas->all();
