@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
 <div class="max-w-6xl mx-auto p-6">
 
         <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Funcionários</h1>
@@ -28,7 +27,7 @@
                     <tr class="hover:bg-gray-50">
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-medium">
-                        <a href="/pagina_funcionario" class="hover:underline text-black ">{{$funcionario->nome}}</a>
+                    <a href={{route("funcionario.show",$funcionario->id)}} class="hover:underline text-black ">{{$funcionario->nome}}</a>
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$funcionario->cpf}}</td>
