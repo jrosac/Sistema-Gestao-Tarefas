@@ -2,7 +2,7 @@
 
 @section('content')
 
-{{$funcionario}}
+{{$funcionario->tarefas}}
 
 <div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
   <div class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6">
@@ -19,22 +19,22 @@
         <div class="space-y-3 text-sm text-gray-700">
           <div>
             <p class="text-xs text-gray-500">Nome</p>
-            <p class="font-medium text-gray-900">João da Silva</p>
+            <p class="font-medium text-gray-900">{{$funcionario->nome}}</p>
           </div>
 
           <div>
             <p class="text-xs text-gray-500">CPF</p>
-            <p class="font-medium text-gray-900">123.456.789-00</p>
+            <p class="font-medium text-gray-900">{{$funcionario->cpf}}</p>
           </div>
 
           <div>
             <p class="text-xs text-gray-500">Data de nascimento</p>
-            <p class="font-medium text-gray-900">15/04/1990</p>
+            <p class="font-medium text-gray-900">{{$funcionario->data_nascimento}}</p>
           </div>
 
           <div>
             <p class="text-xs text-gray-500">Cargo</p>
-            <p class="font-medium text-gray-900">Desenvolvedor Front-end</p>
+            <p class="font-medium text-gray-900">{{$funcionario->cargo}}</p>
           </div>
 
           <div class="mt-4 pt-4 border-t border-gray-200">
@@ -43,19 +43,19 @@
             <div class="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p class="text-xs text-gray-500">Logradouro</p>
-                <p class="font-medium text-gray-900">Rua Major Santos Guedes</p>
+                <p class="font-medium text-gray-900">{{$funcionario->endereco->logradouro}}</p>
               </div>
               <div>
                 <p class="text-xs text-gray-500">Número</p>
-                <p class="font-medium text-gray-900">941</p>
+                <p class="font-medium text-gray-900">{{$funcionario->endereco->numero}}</p>
               </div>
               <div>
                 <p class="text-xs text-gray-500">Cidade</p>
-                <p class="font-medium text-gray-900">Aracaju</p>
+                <p class="font-medium text-gray-900">{{$funcionario->endereco->cidade}}</p>
               </div>
               <div>
                 <p class="text-xs text-gray-500">Estado</p>
-                <p class="font-medium text-gray-900">Sergipe</p>
+                <p class="font-medium text-gray-900">{{$funcionario->endereco->estado}}</p>
               </div>
             </div>
           </div>
@@ -68,9 +68,9 @@
 
         <div class="space-y-3 text-sm text-gray-700 mb-4">
           <ul class="list-disc list-inside space-y-1">
-            <li>Corrigir bug no formulário de login <strong>A fazer</strong></li>
-            <li>Implementar validação de CPF <strong>Feito</strong> </li>
-            <li>Atualizar documentação do módulo de tarefas <strong>Fazendo</strong> </li>
+            @foreach ($funcionario->tarefas->pluck('titulo') as $titulo )
+                <li>{{$titulo}}</li>
+            @endforeach
           </ul>
         </div>
 
