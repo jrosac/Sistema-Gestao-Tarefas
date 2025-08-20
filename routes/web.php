@@ -14,9 +14,8 @@ Route::get('/cadastro-funcionario',[FuncionarioController::class,'create'])->nam
 
 Route::get('/index-funcionario',[FuncionarioController::class,'index'])->name('funcionario.index');
 
-Route::get('/pagina_funcionario', function () {
-    return view('/funcionarios/pagina_individual');
-});
+Route::get('funcionario/{id}',[FuncionarioController::class,'show'])->name('funcionario.show');
+
 
 Route::get('/atualiza_funcionario', function () {
     return view('/funcionarios/atualizacao');
@@ -35,9 +34,9 @@ Route::get('/cadastro-tarefa',[ TarefaController::class,'create'])->name("tarefa
 
 Route::get('/index-tarefa',[TarefaController::class,'index'] )->name("tarefa.index");
 
-Route::get('/pagina_individual_tarefa', function () {
-    return view('/tarefas/pagina_individual');
-})->name("tarefa.pagina_individual");
+Route::post('/cadastro-tarefa', [TarefaController::class, 'store'])->name('tarefa.store');
+
+Route::get('/tarefa/{id}',[TarefaController::class,'show'])->name('tarefa.show');
 
 Route::get('/atualiza_tarefa', function () {
     return view('/tarefas/atualizacao');
