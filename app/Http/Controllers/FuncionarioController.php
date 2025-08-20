@@ -52,7 +52,8 @@ class FuncionarioController extends Controller
      */
     public function edit(string $id)
     {
-
+        $funcionario = Funcionario::find($id);
+        return view('funcionarios.edit', compact('funcionario'));
     }
 
     /**
