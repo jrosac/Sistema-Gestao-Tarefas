@@ -16,10 +16,7 @@ Route::get('/index-funcionario',[FuncionarioController::class,'index'])->name('f
 
 Route::get('funcionario/{id}',[FuncionarioController::class,'show'])->name('funcionario.show');
 
-
-Route::get('/atualiza_funcionario', function () {
-    return view('/funcionarios/atualizacao');
-})->name("funcionario.atualizacao");
+Route::get('funcionario/{id}/edit',[FuncionarioController::class,'edit'])->name('funcionario.edit');
 
 Route::post('/atualiza_funcionario', function () {
 
@@ -38,6 +35,4 @@ Route::post('/cadastro-tarefa', [TarefaController::class, 'store'])->name('taref
 
 Route::get('/tarefa/{id}',[TarefaController::class,'show'])->name('tarefa.show');
 
-Route::get('/atualiza_tarefa', function () {
-    return view('/tarefas/atualizacao');
-})->name("tarefa.atualizacao");
+Route::get('tarefa/{id}/edit',[TarefaController::class,'edit'])->name('tarefa.edit');
