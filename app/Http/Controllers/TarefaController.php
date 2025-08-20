@@ -74,7 +74,7 @@ class TarefaController extends Controller
     {
         $tarefa = Tarefa::find($id);
         return view('tarefas.edit', compact('tarefa'));
-    }
+     }
 
     /**
      * Update the specified resource in storage.
