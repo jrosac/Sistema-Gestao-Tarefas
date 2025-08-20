@@ -82,7 +82,7 @@
             <div class="flex justify-center">
                 <button type="submit"
                     class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer">
-                    <a href="{{route("funcionario.listagem")}}">Atualizar</a>
+                    <a href="{{route("funcionario.index")}}">Atualizar</a>
                 </button>
             </div>
         </form>
