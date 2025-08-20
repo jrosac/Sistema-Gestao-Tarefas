@@ -10,9 +10,9 @@ Route::get('/', function () {
 
 //--------------------------------------------------------
 
-Route::get('/cadastro', function () {
-    return view('/funcionarios/cadastro');
-})->name("funcionario.cadastro");
+Route::get('/cadastro-funcionario', function () {
+    return view('/funcionarios/create');
+})->name("funcionario.create");
 
 Route::post('/cadastro', function () {
 
@@ -38,9 +38,9 @@ Route::post('/atualiza_funcionario', function () {
 
 
 
-Route::get('/cadastro_tarefa', function () {
-    return view('/tarefas/cadastro');
-})->name("tarefa.cadastro");
+Route::get('/cadastro-tarefa', function () {
+    return view('/tarefas/create');
+})->name("tarefa.create");
 
 Route::post('/cadastro_tarefa', function () {
 
