@@ -18,6 +18,7 @@ class FuncionarioController extends Controller
     {
         $funcionarios = $this->funcionarios->all();
 
+
         return view('funcionarios.index', compact("funcionarios"));
     }
 
@@ -40,9 +41,10 @@ class FuncionarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $funcionario = Funcionario::find($id);
+        return view('funcionarios.show', compact('funcionario'));
     }
 
     /**
@@ -50,7 +52,7 @@ class FuncionarioController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
