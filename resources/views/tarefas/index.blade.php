@@ -28,7 +28,7 @@
 
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-medium">
-                            <a href="{{route("tarefa.pagina_individual")}}" class="hover:underline text-black">{{$tarefa->titulo}}</a>
+                            <a href={{route("tarefa.show",$tarefa->id)}} class="hover:underline text-black">{{$tarefa->titulo}}</a>
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 truncate">{{$tarefa->descricao}}</td>
