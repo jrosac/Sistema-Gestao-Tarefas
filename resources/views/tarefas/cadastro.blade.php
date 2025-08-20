@@ -48,7 +48,7 @@
             <div class="flex justify-center">
                 <button type="submit"
                     class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer">
-                    <a href="{{route("tarefa.listagem")}}">Cadastrar</a>
+                    <a href="{{route("tarefa.index")}}">Cadastrar</a>
                 </button>
             </div>
         </form>
