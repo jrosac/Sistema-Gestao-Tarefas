@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\TarefaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -46,9 +47,7 @@ Route::post('/cadastro_tarefa', function () {
     return redirect('/listagem_tarefa');
 });
 
-Route::get('/listagem_tarefa', function () {
-    return view('/tarefas/listagem');
-})->name("tarefa.listagem");
+Route::get('/index-tarefa',[TarefaController::class,'index'] )->name("tarefa.index");
 
 Route::get('/pagina_individual_tarefa', function () {
     return view('/tarefas/pagina_individual');
