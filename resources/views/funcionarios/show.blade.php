@@ -2,6 +2,8 @@
 
 @section('content')
 
+{{$funcionario}}
+
 <div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
   <div class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6">
     <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Página individual do funcionário</h1>
