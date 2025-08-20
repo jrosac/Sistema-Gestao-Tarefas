@@ -16,9 +16,9 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        $contatos = $this->funcionarios->all();
+        $funcionarios = $this->funcionarios->all();
 
-        return view('funcionarios.index', compact("contatos"));
+        return view('funcionarios.index', compact("funcionarios"));
     }
 
     /**
