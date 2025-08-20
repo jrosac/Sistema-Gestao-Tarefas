@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use App\Models\Tarefa;
+use App\Models\Status;
 
 class TarefaController extends Controller
 {
@@ -11,6 +13,7 @@ class TarefaController extends Controller
     public function __construct(Tarefa $tarefas)
     {
         $this->tarefas = $tarefas;
+        $this->status  = Status::all();
 
     }
 
@@ -27,7 +30,8 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        return view('tarefas.create');
+        $status = $this->status;
+        return view('tarefas.create',compact("status"));
     }
 
     /**
@@ -35,15 +39,32 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'required|string|max:1000',
+            'status_id' => 'required|in:1,2,3',
+            'data_entrega' => 'required|date',
+        ]);
 
+        $tarefa = Tarefa::create([
+            'titulo' => $validated['titulo'],
+            'descricao' => $validated['descricao'],
+            'status_id' => $validated['status_id'],
+            'data_entrega' => $validated['data_entrega'],
+        ]);
+
+        return redirect()->route('tarefa.index')
+                         ->with('success', 'Tarefa criada com sucesso!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $status = $this->status;
+        $tarefa = Tarefa::find($id);
+        return view('tarefas.show', compact('tarefa','status'));
     }
 
     /**
