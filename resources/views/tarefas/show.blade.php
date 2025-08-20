@@ -62,7 +62,7 @@
 
     <!-- Ações -->
     <div class="mt-6 flex justify-center gap-3">
-      <a href="{{route("tarefa.atualizacao")}}" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
+      <a href="{{route("tarefa.edit",$tarefa->id)}}" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
         Atualizar dados
       </a>
 
