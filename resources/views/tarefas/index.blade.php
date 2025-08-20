@@ -2,7 +2,8 @@
 
 @section('content')
 
-<div class="max-w-6xl mx-auto p-6">
+
+<div class="max-w-7xl mx-auto p-6">
 
         <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Tarefas</h1>
 
@@ -22,19 +23,24 @@
                 </thead>
 
                 <tbody class="bg-white divide-y divide-gray-100">
+                    @foreach ($tarefas as $tarefa)
+
+
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-medium">
-                            <a href="{{route("tarefa.pagina_individual")}}" class="hover:underline text-black">Testar ambiente de Desenvolvimetno</a>
+                            <a href="{{route("tarefa.pagina_individual")}}" class="hover:underline text-black">{{$tarefa->titulo}}</a>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 truncate">Utilizar o docker para baixar as dependecias e testar a aplicação em um ambiente isolado</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XX/XX/XXXX</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">A fazer</td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 truncate">{{$tarefa->descricao}}</td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$tarefa->data_entrega}}</td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$tarefa->status->nome}}</td>
 
                     </tr>
-
-
-
+                    @endforeach
                 </tbody>
+
             </table>
         </div>
 @endsection
