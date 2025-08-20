@@ -6,12 +6,21 @@ use Illuminate\Http\Request;
 
 class TarefaController extends Controller
 {
+
+    public function __construct(Tarefa $tarefas)
+    {
+        $this->tarefa = $tarefas;
+
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $tarefas = $this->tarefas->all();
+
+        return view('tarefas.index', compact("tarefas"));
+
     }
 
     /**
