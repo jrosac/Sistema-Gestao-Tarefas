@@ -10,14 +10,7 @@ Route::get('/', function () {
 
 //--------------------------------------------------------
 
-Route::get('/cadastro-funcionario', function () {
-    return view('/funcionarios/create');
-})->name("funcionario.create");
-
-Route::post('/cadastro', function () {
-
-    return redirect('/listagem');
-});
+Route::get('/cadastro-funcionario',[FuncionarioController::class,'create'])->name("funcionario.create");
 
 Route::get('/index-funcionario',[FuncionarioController::class,'index'])->name('funcionario.index');
 
@@ -38,14 +31,7 @@ Route::post('/atualiza_funcionario', function () {
 
 
 
-Route::get('/cadastro-tarefa', function () {
-    return view('/tarefas/create');
-})->name("tarefa.create");
-
-Route::post('/cadastro_tarefa', function () {
-
-    return redirect('/listagem_tarefa');
-});
+Route::get('/cadastro-tarefa',[ TarefaController::class,'create'])->name("tarefa.create");
 
 Route::get('/index-tarefa',[TarefaController::class,'index'] )->name("tarefa.index");
 
