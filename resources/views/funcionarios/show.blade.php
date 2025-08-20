@@ -2,8 +2,6 @@
 
 @section('content')
 
-{{$funcionario->tarefas}}
-
 <div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
   <div class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6">
     <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Página individual do funcionário</h1>
@@ -85,7 +83,7 @@
 
     <!-- Ações -->
     <div class="mt-6 flex justify-center gap-3">
-      <a href="{{route("funcionario.atualizacao")}}" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
+      <a href="{{route("funcionario.edit",$funcionario->id)}}" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
         Atualizar dados
       </a>
 
