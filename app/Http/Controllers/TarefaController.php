@@ -27,7 +27,7 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarefas.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
