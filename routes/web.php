@@ -22,11 +22,6 @@ Route::get('funcionario/{id}/edit',[FuncionarioController::class,'edit'])->name(
 
 Route::put('funcionario/{id}',[FuncionarioController::class,'update'])->name('funcionario.update');
 
-Route::post('/atualiza_funcionario', function () {
-
-    return redirect('/pagina_funcionario');
-});
-
 // -----------------------------------------------------------
 
 
@@ -42,3 +37,5 @@ Route::get('/tarefa/{id}',[TarefaController::class,'show'])->name('tarefa.show')
 Route::get('tarefa/{id}/edit',[TarefaController::class,'edit'])->name('tarefa.edit');
 
 Route::put('tarefa/{id}',[TarefaController::class,'update'])->name('tarefa.update');
+
+Route::resource('tarefas', TarefaController::class);
