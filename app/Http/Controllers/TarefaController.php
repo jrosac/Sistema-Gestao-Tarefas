@@ -39,18 +39,18 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descricao' => 'required|string|max:1000',
-            'status_id' => 'required|in:1,2,3',
-            'data_entrega' => 'required|date',
-        ]);
+        // $validated = $request->validate([
+        //     'titulo' => 'required|string|max:255',
+        //     'descricao' => 'required|string|max:1000',
+        //     'status_id' => 'required|in:1,2,3',
+        //     'data_entrega' => 'required|date',
+        // ]);
 
         $tarefa = Tarefa::create([
-            'titulo' => $validated['titulo'],
-            'descricao' => $validated['descricao'],
-            'status_id' => $validated['status_id'],
-            'data_entrega' => $validated['data_entrega'],
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
+            'status_id' => $request->status_id,
+            'data_entrega' => $request->data_entrega,
         ]);
 
         return redirect()->route('tarefa.index')
