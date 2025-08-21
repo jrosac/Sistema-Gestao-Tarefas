@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
-use App\Models\Funcionario; // Assuming you have a Funcionario model
+use App\Models\Funcionario;
+use Exception;// Assuming you have a Funcionario model
 
 class FuncionarioController extends Controller
 {
@@ -35,35 +37,50 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            //fucionario
-            'nome'=> 'required|string|max:255',
-            'cpf'=> 'required|string|max:14',
-            'cargo'=> 'required|string|max:100',
-            'data_nascimento'=> 'required|date',
-            // endereco
-            'logradouro'=> 'required|string|max:255',
-            'numero'=> 'required|string|max:10',
-            'cidade'=> 'required|string|max:100',
-            'estado'=> 'required|string|max:25',
+        // $validated = $request->validate([
+        //     //fucionario
+        //     'nome'=> 'required|string|max:255',
+        //     'cpf'=> 'required|string|max:14',
+        //     'cargo'=> 'required|string|max:100',
+        //     'data_nascimento'=> 'required|date',
+        //     // endereco
+        //     'logradouro'=> 'required|string|max:255',
+        //     'numero'=> 'required|string|max:10',
+        //     'cidade'=> 'required|string|max:100',
+        //     'estado'=> 'required|string|max:25',
 
+        // ]);
+
+        //dd($request->nome);
+        DB::beginTransaction();
+        try{
+            $funcionario = Funcionario::create([
+            'nome'=> $request->nome,
+            'cpf'=> $request->cpf,
+            'cargo'=> $request->cargo,
+            'data_nascimento'=> $request->data_nascimento,
         ]);
 
-        $funcionario = Funcionario::create([
-            'nome'=> $validated['nome'],
-            'cpf'=> $validated['cpf'],
-            'cargo'=> $validated['cargo'],
-            'data_nascimento'=> $validated['data_nascimento'],
-        ]);
+        //dd($funcionario);
 
         $funcionario->endereco()->create([
-            'logradouro'=> $validated['logradouro'],
-            'numero'=> $validated['numero'],
-            'cidade'=> $validated['cidade'],
-            'estado'=> $validated['estado'],
+            'logradouro'=> $request->logradouro,
+            'numeo'=> $request-> numero,
+            'cidade'=> $request->cidade,
+            'estado'=> $request->estado,
         ]);
 
+        DB::commit();
+
         return redirect()->route('funcionario.index')->with('success', 'Funcionário cadastrado com sucesso!');
+
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Erro ao cadastrar funcionário: '.$e->getMessage());
+        }
+
+
     }
 
     /**
@@ -89,7 +106,7 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-                $validated = $request->validate([
+            $validated = $request->validate([
             //fucionario
             'nome'=> 'required|string|max:255',
             'cpf'=> 'required|string|max:14',
