@@ -11,7 +11,7 @@
         </h1>
 
         <!-- Formulário -->
-        <form action="" class="space-y-6">
+        <form action="{{route('funcionario.store')}}" class="space-y-6" method="POST">
             @csrf
 
             <!-- Subtítulo -->
@@ -31,8 +31,8 @@
                     </div>
 
                     <div>
-                        <label for="data-nascimento" class="block text-sm font-medium text-gray-700">Selecione sua data de nascimento:</label>
-                        <input type="date" name="data-nascimento"
+                        <label for="data_nascimento" class="block text-sm font-medium text-gray-700">Selecione sua data de nascimento:</label>
+                        <input type="date" name="data_nascimento"
                             class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-1">
                     </div>
 
@@ -43,8 +43,8 @@
                     </div>
 
                     <div>
-                        <label for="nome-cargo" class="block text-sm font-medium text-gray-700">Digite seu cargo:</label>
-                        <input type="text" name="nome-cargo" placeholder="Ex: Desenvolvedor Front-end"
+                        <label for="cargo" class="block text-sm font-medium text-gray-700">Digite seu cargo:</label>
+                        <input type="text" name="cargo" placeholder="Ex: Desenvolvedor Front-end"
                             class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-1">
                     </div>
                 </div>
@@ -80,10 +80,7 @@
 
             <!-- Botão de Enviar -->
             <div class="flex justify-center">
-                <button type="submit"
-                    class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer">
-                    <a href="{{route("funcionario.index")}}">Cadastrar</a>
-                </button>
+                <input type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer" value="Cadastrar">
             </div>
         </form>
 
