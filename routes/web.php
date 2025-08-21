@@ -12,6 +12,8 @@ Route::get('/', function () {
 
 Route::get('/cadastro-funcionario',[FuncionarioController::class,'create'])->name("funcionario.create");
 
+Route::post('/cadastro-funcionario',[FuncionarioController::class,'store'])->name('funcionario.store');
+
 Route::get('/index-funcionario',[FuncionarioController::class,'index'])->name('funcionario.index');
 
 Route::get('funcionario/{id}',[FuncionarioController::class,'show'])->name('funcionario.show');
