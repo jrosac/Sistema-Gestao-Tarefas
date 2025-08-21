@@ -89,7 +89,37 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+                $validated = $request->validate([
+            //fucionario
+            'nome'=> 'required|string|max:255',
+            'cpf'=> 'required|string|max:14',
+            'cargo'=> 'required|string|max:100',
+            'data_nascimento'=> 'required|date',
+            // endereco
+            'logradouro'=> 'required|string|max:255',
+            'numero'=> 'required|string|max:10',
+            'cidade'=> 'required|string|max:100',
+            'estado'=> 'required|string|max:25',
+
+        ]);
+
+        $funcionario = Funcionario::find($id);
+
+        $funcionario->update([
+            'nome'=> $validated['nome'],
+            'cpf'=> $validated['cpf'],
+            'cargo'=> $validated['cargo'],
+            'data_nascimento'=> $validated['data_nascimento'],
+        ]);
+
+        $funcionario->endereco()->update([
+            'logradouro'=> $validated['logradouro'],
+            'numero'=> $validated['numero'],
+            'cidade'=> $validated['cidade'],
+            'estado'=> $validated['estado'],
+        ]);
+
+        return redirect()->route('funcionario.show',$funcionario->id)->with('success', 'Funcionário cadastrado com sucesso!');
     }
 
     /**
