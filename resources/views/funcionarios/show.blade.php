@@ -66,8 +66,8 @@
 
         <div class="space-y-3 text-sm text-gray-700 mb-4">
           <ul class="list-disc list-inside space-y-1">
-            @foreach ($funcionario->tarefas->pluck('titulo') as $titulo )
-                <li>{{$titulo}}</li>
+            @foreach ($funcionario->tarefas as $tarefa )
+                <li>{{$tarefa->titulo}} - <strong>{{$tarefa->status->nome}}</strong> </li>
             @endforeach
           </ul>
         </div>
