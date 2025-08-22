@@ -50,7 +50,15 @@ class TarefaController extends Controller
         ]);
 
 
-    $funcionariosSelecionados = array_unique(array_filter($request->funcionarios));
+
+    $funcionarios = $request->funcionarios;
+
+    if($funcionarios == null){
+        $funcionarios = [];
+    }
+
+    $funcionariosSelecionados = array_unique(array_filter($funcionarios));
+
 
 
     if (!empty($funcionariosSelecionados)) {
@@ -97,12 +105,16 @@ class TarefaController extends Controller
             'data_entrega' => $request->data_entrega,
         ]);
 
-        $funcionariosSelecionados = array_unique(array_filter($request->funcionarios));
+     $funcionarios = $request->funcionarios;
+
+    if($funcionarios == null){
+        $funcionarios = [];
+    }
+
+    $funcionariosSelecionados = array_unique(array_filter($funcionarios));
 
 
-        if (!empty($funcionariosSelecionados)) {
-            $tarefa->funcionarios()->sync($funcionariosSelecionados);
-        }
+        $tarefa->funcionarios()->sync($funcionariosSelecionados);
 
         return redirect()->route('tarefa.show',$tarefa->id)
                          ->with('success', 'Tarefa criada com sucesso!');
