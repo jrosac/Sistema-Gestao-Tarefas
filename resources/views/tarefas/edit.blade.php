@@ -66,12 +66,36 @@
                                    {{ old('status_id') == 3 ? 'checked' : '' }}>
                                <span class="ml-2 text-sm">Feito</span>
                            </label>
-
-                           @error('status_id')
-                               <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                           @enderror
                        </div>
                    </div>
+
+            <div>
+                 <label for="funcionarios" class="block text-sm font-medium text-gray-700 mb-1">Selecione os funcionários:</label>
+
+                 <select name="funcionarios[]" id="funcionario1"
+                     class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
+                     <option value="" disabled selected >Escolha um funcionário...</option>
+                     @foreach ($funcionarios as $funcionario)
+                         <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
+                     @endforeach
+                 </select>
+
+                     <select name="funcionarios[]" id="funcionario2"
+                     class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
+                     <option value="" disabled selected >Escolha um funcionário...</option>
+                     @foreach ($funcionarios as $funcionario)
+                         <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
+                     @endforeach
+                 </select>
+
+                     <select name="funcionarios[]" id="funcionario3"
+                     class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
+                     <option value="" disabled selected >Escolha um funcionário...</option>
+                     @foreach ($funcionarios as $funcionario)
+                         <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
+                     @endforeach
+                 </select>
+            </div>
 
 
                     <div>
