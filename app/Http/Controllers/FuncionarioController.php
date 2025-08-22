@@ -37,19 +37,6 @@ class FuncionarioController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     //fucionario
-        //     'nome'=> 'required|string|max:255',
-        //     'cpf'=> 'required|string|max:14',
-        //     'cargo'=> 'required|string|max:100',
-        //     'data_nascimento'=> 'required|date',
-        //     // endereco
-        //     'logradouro'=> 'required|string|max:255',
-        //     'numero'=> 'required|string|max:10',
-        //     'cidade'=> 'required|string|max:100',
-        //     'estado'=> 'required|string|max:25',
-
-        // ]);
 
         //dd($request->nome);
         DB::beginTransaction();
@@ -65,10 +52,12 @@ class FuncionarioController extends Controller
 
         $funcionario->endereco()->create([
             'logradouro'=> $request->logradouro,
-            'numeo'=> $request-> numero,
+            'numero'=> $request-> numero,
             'cidade'=> $request->cidade,
             'estado'=> $request->estado,
         ]);
+
+        //dd($funcionario);
 
         DB::commit();
 
