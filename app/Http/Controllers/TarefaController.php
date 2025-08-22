@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
 use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use App\Models\Tarefa;
@@ -31,7 +32,8 @@ class TarefaController extends Controller
     public function create()
     {
         $status = $this->status;
-        return view('tarefas.create',compact("status"));
+        $funcionarios = Funcionario::all();
+        return view('tarefas.create',compact("status","funcionarios"));
     }
 
     /**
@@ -39,12 +41,6 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'titulo' => 'required|string|max:255',
-        //     'descricao' => 'required|string|max:1000',
-        //     'status_id' => 'required|in:1,2,3',
-        //     'data_entrega' => 'required|date',
-        // ]);
 
         $tarefa = Tarefa::create([
             'titulo' => $request->titulo,
@@ -52,6 +48,14 @@ class TarefaController extends Controller
             'status_id' => $request->status_id,
             'data_entrega' => $request->data_entrega,
         ]);
+
+
+    $funcionariosSelecionados = array_unique(array_filter($request->funcionarios));
+
+
+    if (!empty($funcionariosSelecionados)) {
+        $tarefa->funcionarios()->attach($funcionariosSelecionados);
+    }
 
         return redirect()->route('tarefa.index')
                          ->with('success', 'Tarefa criada com sucesso!');
