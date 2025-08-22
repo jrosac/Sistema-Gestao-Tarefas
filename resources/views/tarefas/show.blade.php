@@ -51,11 +51,6 @@
           </ul>
         </div>
 
-        <div class="mt-auto flex justify-center md:justify-start gap-3">
-          <a href="#" class="inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow">
-            Editar Responsáveis
-          </a>
-        </div>
       </div>
 
     </div>
