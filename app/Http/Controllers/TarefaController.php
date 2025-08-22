@@ -77,7 +77,8 @@ class TarefaController extends Controller
     public function edit(string $id)
     {
         $tarefa = Tarefa::find($id);
-        return view('tarefas.edit', compact('tarefa'));
+        $funcionarios = Funcionario::all();
+        return view('tarefas.edit', compact('tarefa','funcionarios'));
      }
 
     /**
@@ -85,23 +86,25 @@ class TarefaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated = $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descricao' => 'required|string|max:1000',
-            'status_id' => 'required|in:1,2,3',
-            'data_entrega' => 'required|date',
-        ]);
+
 
         $tarefa = Tarefa::find($id);
 
         $tarefa -> update([
-            'titulo' => $validated['titulo'],
-            'descricao' => $validated['descricao'],
-            'status_id' => $validated['status_id'],
-            'data_entrega' => $validated['data_entrega'],
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
+            'status_id' => $request->status_id,
+            'data_entrega' => $request->data_entrega,
         ]);
 
-        return redirect()->route('tarefa.index')
+        $funcionariosSelecionados = array_unique(array_filter($request->funcionarios));
+
+
+        if (!empty($funcionariosSelecionados)) {
+            $tarefa->funcionarios()->sync($funcionariosSelecionados);
+        }
+
+        return redirect()->route('tarefa.show',$tarefa->id)
                          ->with('success', 'Tarefa criada com sucesso!');
     }
 
