@@ -70,66 +70,41 @@
                    </div>
 
 
-                         <div>
-                              <label for="funcionarios" class="block text-sm font-medium text-gray-700 mb-1">Selecione os funcionários:</label>
+                    @php
+                        // IDs dos funcionários já associados à tarefa
+                        $funcionariosTarefa = $tarefa->funcionarios->pluck('id')->toArray();
+                    @endphp
 
-                              <select name="funcionarios[]" id="funcionario1"
-                                  class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
+                    <div>
+                        <label for="funcionarios" class="block text-sm font-medium text-gray-700 mb-1">
+                            Selecione os funcionários:
+                        </label>
 
-                                  @if (count($tarefa->funcionarios->pluck('nome')) > 0)
-                                          <option value={{$tarefa->funcionarios->pluck('id')[0]}} selected>{{$tarefa->funcionarios->pluck('nome')[0]}}</option>
-                                          <option value="" >N/A</option>
+                        @for ($i = 0; $i < 3; $i++)
+                            @php
+                                $selectedId = $funcionariosTarefa[$i] ?? null;
+                            @endphp
 
-                                          @foreach ($funcionarios as $funcionario)
-                                          <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
-                                          @endforeach
+                            <select name="funcionarios[]"
+                                class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
 
-                                  @elseif (count($tarefa->funcionarios->pluck('nome')) == 0)
-                                          <option value="" disabled selected >Escolha um funcionario ...</option>
-                                      @foreach ($funcionarios as $funcionario)
-                                          <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
-                                      @endforeach
-                                  @endif
-                              </select>
+                                @if($selectedId != null)
+                                    <option value="{{ $selectedId }}" selected>
+                                        {{ $tarefa->funcionarios[$i]->nome }}
+                                    </option>
+                                    <option value="">N/A</option>
+                                @else
+                                    <option value="" selected>N/A</option>
+                                @endif
 
-                              <select name="funcionarios[]" id="funcionario1"
-                                  class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
-
-                                  @if (count($tarefa->funcionarios->pluck('nome')) > 1)
-                                          <option value={{$tarefa->funcionarios->pluck('id')[1]}} selected>{{$tarefa->funcionarios->pluck('nome')[1]}}</option>
-                                          <option value="" >N/A</option>
-
-                                          @foreach ($funcionarios as $funcionario)
-                                          <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
-                                          @endforeach
-
-                                  @elseif (count($tarefa->funcionarios->pluck('nome')) <= 1)
-                                          <option value="" disabled selected >Escolha um funcionario ...</option>
-                                      @foreach ($funcionarios as $funcionario)
-                                          <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
-                                      @endforeach
-                                  @endif
-                              </select>
-
-                              <select name="funcionarios[]" id="funcionario1"
-                                  class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
-
-                                  @if (count($tarefa->funcionarios->pluck('nome')) > 2)
-                                          <option value={{$tarefa->funcionarios->pluck('id')[2]}} selected>{{$tarefa->funcionarios->pluck('nome')[2]}}</option>
-                                          <option value="" >N/A</option>
-
-                                          @foreach ($funcionarios as $funcionario)
-                                          <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
-                                          @endforeach
-
-                                  @elseif (count($tarefa->funcionarios->pluck('nome')) <= 2)
-                                          <option value="" disabled selected >Escolha um funcionario ...</option>
-                                      @foreach ($funcionarios as $funcionario)
-                                          <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
-                                      @endforeach
-                                  @endif
-                              </select>
-                         </div>
+                                @foreach($funcionarios as $funcionario)
+                                    @if($funcionario->id != $selectedId)
+                                        <option value="{{ $funcionario->id }}">{{ $funcionario->nome }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        @endfor
+                    </div>
 
 
                     <div>
