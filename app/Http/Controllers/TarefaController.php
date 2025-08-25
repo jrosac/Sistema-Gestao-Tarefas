@@ -68,6 +68,7 @@ class TarefaController extends Controller
         $tarefa->funcionarios()->attach($funcionariosSelecionados);
     }
 
+            DB::commit();
         return redirect()->route('tarefa.index')
                          ->with('success', 'Tarefa criada com sucesso!');
     }catch(Exception $e){
@@ -124,6 +125,7 @@ class TarefaController extends Controller
 
         $tarefa->funcionarios()->sync($funcionariosSelecionados);
 
+        DB::commit();
         return redirect()->route('tarefa.show',$tarefa->id)
                          ->with('success', 'Tarefa criada com sucesso!');
     }catch(Exception $e){
