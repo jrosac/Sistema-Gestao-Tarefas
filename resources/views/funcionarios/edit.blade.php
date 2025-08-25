@@ -82,6 +82,27 @@
 
             </div>
 
+
+
+             <div>
+                 <label class="block text-sm font-medium text-gray-700 pb-3">Status das tarefas:</label>
+                 @foreach ($funcionario->tarefas as $i => $tarefa)
+                     <div>
+                         <p class="font-medium text-gray-900">{{ $tarefa->titulo }}</p>
+                         <!-- Envia o ID da tarefa escondido -->
+                         <input type="hidden" name="tarefas[{{ $i }}][id]" value="{{ $tarefa->id }}">
+                         <!-- Select envia o status -->
+                         <select name="tarefas[{{ $i }}][status_id]"
+                                 class="mt-1 w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 bg-white text-gray-700 mb-3">
+                             <option value="1" {{ $tarefa->status_id == 1 ? 'selected' : '' }}>A fazer</option>
+                             <option value="2" {{ $tarefa->status_id == 2 ? 'selected' : '' }}>Fazendo</option>
+                             <option value="3" {{ $tarefa->status_id == 3 ? 'selected' : '' }}>Feito</option>
+                         </select>
+                     </div>
+                 @endforeach
+             </div>
+
+
             <!-- Botão de Enviar -->
             <div class="flex justify-center">
                 <input type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer" value="Atualizar">
