@@ -97,7 +97,8 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+        DB::beginTransaction();
+        try{
 
         $funcionario = Funcionario::find($id);
 
@@ -125,8 +126,12 @@ class FuncionarioController extends Controller
         }
      }
    }
-
+       DB::commit();
        return redirect()->route('funcionario.show',$funcionario->id)->with('success', 'Funcionário cadastrado com sucesso!');
+}catch(Exception $e){
+    DB::rollBack();
+         return redirect()->back()->with('error', 'Erro ao atualizar funcionário: '.$e->getMessage());
+    }
 }
 
     /**
@@ -134,6 +139,20 @@ class FuncionarioController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $funcionario = Funcionario::find($id);
+
+            $funcionario->delete();
+
+            DB::commit();
+
+            return redirect()->route('funcionario.index')->with('success', 'Funcionário deletado com sucesso!');
+       }catch(\Exception $e){
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Erro ao deletar funcionário: '.$e->getMessage());
     }
+  }
 }
+
+

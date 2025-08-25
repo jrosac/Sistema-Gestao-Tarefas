@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
 use Brick\Math\BigInteger;
+use DB;
 use Illuminate\Http\Request;
 use App\Models\Tarefa;
 use App\Models\Status;
@@ -41,6 +42,8 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
+        try{
 
         $tarefa = Tarefa::create([
             'titulo' => $request->titulo,
@@ -67,7 +70,11 @@ class TarefaController extends Controller
 
         return redirect()->route('tarefa.index')
                          ->with('success', 'Tarefa criada com sucesso!');
+    }catch(Exception $e){
+        DB::rollBack();
+        return redirect()->back()->with('error', 'Erro ao criar a tarefa: '.$e->getMessage());
     }
+}
 
     /**
      * Display the specified resource.
@@ -94,7 +101,8 @@ class TarefaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+        DB::beginTransaction();
+        try{
 
         $tarefa = Tarefa::find($id);
 
@@ -118,13 +126,31 @@ class TarefaController extends Controller
 
         return redirect()->route('tarefa.show',$tarefa->id)
                          ->with('success', 'Tarefa criada com sucesso!');
+    }catch(Exception $e){
+        DB::rollBack();
+        return redirect()->back()->with('error', 'Erro ao atualizar a tarefa: '.$e->getMessage());
     }
+}
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
-    }
+        DB::beginTransaction();
+        try{
+
+
+        $tarefa = Tarefa::find($id);
+        $tarefa->delete();
+
+        DB::commit();
+        return redirect()->route('tarefa.index')->with('success', 'Tarefa deletada com sucesso!');
+    }catch(Exception $e){
+        DB::rollBack();
+        return redirect()->route('tarefa.index')->with('error', 'Erro ao deletar a tarefa: '.$e->getMessage());
+}
+
+}
+
 }
