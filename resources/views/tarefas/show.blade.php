@@ -61,7 +61,7 @@
         Atualizar dados
       </a>
 
-      <form action="#" method="POST" onsubmit="return confirm('Deseja realmente deletar este funcionário?')">
+        <form action="{{route('tarefa.destroy',$tarefa->id)}}" method="POST" onsubmit="return confirm('Deseja realmente deletar esta taarefa?')">
         @csrf
         @method('DELETE')
         <button type="submit" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer">
