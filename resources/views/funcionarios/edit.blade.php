@@ -88,7 +88,7 @@
                  <label class="block text-sm font-medium text-gray-700 pb-3">Status das tarefas:</label>
                  @foreach ($funcionario->tarefas as $i => $tarefa)
                      <div>
-                         <p class="font-medium text-gray-900">{{ $tarefa->titulo }}</p>
+                         <p class="font-semibold text-gray-900 ">{{ $tarefa->titulo }}</p>
                          <!-- Envia o ID da tarefa escondido -->
                          <input type="hidden" name="tarefas[{{ $i }}][id]" value="{{ $tarefa->id }}">
                          <!-- Select envia o status -->
