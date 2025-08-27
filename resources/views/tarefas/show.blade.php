@@ -11,6 +11,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <!-- Informações -->
+      <x-alert/>
       <div class="bg-gray-50 rounded-lg p-5">
         <h2 class="text-lg font-semibold text-gray-800 mb-4">Informações da tarefa</h2>
 

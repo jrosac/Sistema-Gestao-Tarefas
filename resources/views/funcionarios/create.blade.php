@@ -12,6 +12,7 @@
         </h1>
 
         <!-- Formulário -->
+        <x-alert />
         <form action="{{route('funcionario.store')}}" class="space-y-6" method="POST">
             @csrf
 

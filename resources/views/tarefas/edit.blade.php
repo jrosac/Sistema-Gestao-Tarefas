@@ -13,6 +13,7 @@
         </h1>
 
         <!-- Formulário -->
+        <x-alert/>
         <form action="{{route("tarefa.update",$tarefa->id)}}" method="POST" class="space-y-6">
             @csrf
             @method('PUT')

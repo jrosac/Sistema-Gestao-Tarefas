@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+<x-alert/>
 <div class="max-w-7xl mx-auto p-6">
 
         <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Tarefas</h1>

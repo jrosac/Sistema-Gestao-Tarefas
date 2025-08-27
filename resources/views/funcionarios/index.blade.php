@@ -6,7 +6,7 @@
         <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Funcionários</h1>
 
 
-
+    <x-alert />
     <div class="bg-white shadow-sm rounded-lg overflow-hidden">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
