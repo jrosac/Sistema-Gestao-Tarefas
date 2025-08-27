@@ -11,8 +11,9 @@ use Exception;// Assuming you have a Funcionario model
 class FuncionarioController extends Controller
 {
 
-    public function __construct(Funcionario $funcionarios){
-        $this-> funcionarios = $funcionarios;
+    public function __construct(Funcionario $funcionarios)
+    {
+        $this->funcionarios = $funcionarios;
     }
     /**
      * Display a listing of the resource.
@@ -41,33 +42,33 @@ class FuncionarioController extends Controller
 
 
         DB::beginTransaction();
-        try{
+        try {
             $funcionario = Funcionario::create([
-            'nome'=> $request->nome,
-            'cpf'=> $request->cpf,
-            'cargo'=> $request->cargo,
-            'data_nascimento'=> $request->data_nascimento,
-        ]);
+                'nome' => $request->nome,
+                'cpf' => $request->cpf,
+                'cargo' => $request->cargo,
+                'data_nascimento' => $request->data_nascimento,
+            ]);
 
 
 
-        $funcionario->endereco()->create([
-            'logradouro'=> $request->logradouro,
-            'numero'=> $request-> numero,
-            'cidade'=> $request->cidade,
-            'estado'=> $request->estado,
-        ]);
+            $funcionario->endereco()->create([
+                'logradouro' => $request->logradouro,
+                'numero' => $request->numero,
+                'cidade' => $request->cidade,
+                'estado' => $request->estado,
+            ]);
 
 
 
-        DB::commit();
+            DB::commit();
 
-        return redirect()->route('funcionario.index')->with('success', 'Funcionário cadastrado com sucesso!');
+            return redirect()->route('funcionario.index')->with('success', 'Funcionário cadastrado com sucesso!');
 
 
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Erro ao cadastrar funcionário: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao cadastrar funcionário: ' . $e->getMessage());
         }
 
 
@@ -89,7 +90,7 @@ class FuncionarioController extends Controller
     {
         $funcionario = Funcionario::find($id);
         $tarefas = Tarefa::all();
-        return view('funcionarios.edit', compact('funcionario','tarefas'));
+        return view('funcionarios.edit', compact('funcionario', 'tarefas'));
     }
 
     /**
@@ -98,41 +99,41 @@ class FuncionarioController extends Controller
     public function update(Request $request, string $id)
     {
         DB::beginTransaction();
-        try{
+        try {
 
-        $funcionario = Funcionario::find($id);
+            $funcionario = Funcionario::find($id);
 
-        $funcionario->update([
-            'nome'=> $request->nome,
-            'cpf'=> $request->cpf,
-            'cargo'=> $request->cargo,
-            'data_nascimento'=> $request->data_nascimento,
-        ]);
+            $funcionario->update([
+                'nome' => $request->nome,
+                'cpf' => $request->cpf,
+                'cargo' => $request->cargo,
+                'data_nascimento' => $request->data_nascimento,
+            ]);
 
-        $funcionario->endereco()->update([
-            'logradouro'=> $request->logradouro,
-            'numero'=> $request->numero,
-            'cidade'=> $request->cidade,
-            'estado'=> $request->estado,
-        ]);
+            $funcionario->endereco()->update([
+                'logradouro' => $request->logradouro,
+                'numero' => $request->numero,
+                'cidade' => $request->cidade,
+                'estado' => $request->estado,
+            ]);
 
-          if ($request->has('tarefas')) {
-        foreach ($request->tarefas as $dados) {
+            if ($request->has('tarefas')) {
+                foreach ($request->tarefas as $dados) {
 
-        $tarefa = $funcionario->tarefas()->find($dados['id']);
-        if ($tarefa != null) {
+                    $tarefa = $funcionario->tarefas()->find($dados['id']);
+                    if ($tarefa != null) {
 
-            $tarefa->update(['status_id' => $dados['status_id']]);
+                        $tarefa->update(['status_id' => $dados['status_id']]);
+                    }
+                }
+            }
+            DB::commit();
+            return redirect()->route('funcionario.show', $funcionario->id)->with('success', 'Funcionário cadastrado com sucesso!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Erro ao atualizar funcionário: ' . $e->getMessage());
         }
-     }
-   }
-       DB::commit();
-       return redirect()->route('funcionario.show',$funcionario->id)->with('success', 'Funcionário cadastrado com sucesso!');
-}catch(Exception $e){
-    DB::rollBack();
-         return redirect()->back()->with('error', 'Erro ao atualizar funcionário: '.$e->getMessage());
     }
-}
 
     /**
      * Remove the specified resource from storage.
@@ -140,7 +141,7 @@ class FuncionarioController extends Controller
     public function destroy(string $id)
     {
         DB::beginTransaction();
-        try{
+        try {
             $funcionario = Funcionario::find($id);
 
             $funcionario->delete();
@@ -148,11 +149,11 @@ class FuncionarioController extends Controller
             DB::commit();
 
             return redirect()->route('funcionario.index')->with('success', 'Funcionário deletado com sucesso!');
-       }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Erro ao deletar funcionário: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Erro ao deletar funcionário: ' . $e->getMessage());
+        }
     }
-  }
 }
 
 

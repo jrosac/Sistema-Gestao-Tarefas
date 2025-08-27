@@ -15,7 +15,7 @@ class TarefaController extends Controller
     public function __construct(Tarefa $tarefas)
     {
         $this->tarefas = $tarefas;
-        $this->status  = Status::all();
+        $this->status = Status::all();
 
     }
 
@@ -34,7 +34,7 @@ class TarefaController extends Controller
     {
         $status = $this->status;
         $funcionarios = Funcionario::all();
-        return view('tarefas.create',compact("status","funcionarios"));
+        return view('tarefas.create', compact("status", "funcionarios"));
     }
 
     /**
@@ -43,39 +43,39 @@ class TarefaController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
-        try{
+        try {
 
-        $tarefa = Tarefa::create([
-            'titulo' => $request->titulo,
-            'descricao' => $request->descricao,
-            'status_id' => $request->status_id,
-            'data_entrega' => $request->data_entrega,
-        ]);
-
-
-
-    $funcionarios = $request->funcionarios;
-
-    if($funcionarios == null){
-        $funcionarios = [];
-    }
-
-    $funcionariosSelecionados = array_unique(array_filter($funcionarios));
+            $tarefa = Tarefa::create([
+                'titulo' => $request->titulo,
+                'descricao' => $request->descricao,
+                'status_id' => $request->status_id,
+                'data_entrega' => $request->data_entrega,
+            ]);
 
 
 
-    if (!empty($funcionariosSelecionados)) {
-        $tarefa->funcionarios()->attach($funcionariosSelecionados);
-    }
+            $funcionarios = $request->funcionarios;
+
+            if ($funcionarios == null) {
+                $funcionarios = [];
+            }
+
+            $funcionariosSelecionados = array_unique(array_filter($funcionarios));
+
+
+
+            if (!empty($funcionariosSelecionados)) {
+                $tarefa->funcionarios()->attach($funcionariosSelecionados);
+            }
 
             DB::commit();
-        return redirect()->route('tarefa.index')
-                         ->with('success', 'Tarefa criada com sucesso!');
-    }catch(Exception $e){
-        DB::rollBack();
-        return redirect()->back()->with('error', 'Erro ao criar a tarefa: '.$e->getMessage());
+            return redirect()->route('tarefa.index')
+                ->with('success', 'Tarefa criada com sucesso!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Erro ao criar a tarefa: ' . $e->getMessage());
+        }
     }
-}
 
     /**
      * Display the specified resource.
@@ -84,7 +84,7 @@ class TarefaController extends Controller
     {
         $status = $this->status;
         $tarefa = Tarefa::find($id);
-        return view('tarefas.show', compact('tarefa','status'));
+        return view('tarefas.show', compact('tarefa', 'status'));
     }
 
     /**
@@ -94,8 +94,8 @@ class TarefaController extends Controller
     {
         $tarefa = Tarefa::find($id);
         $funcionarios = Funcionario::all();
-        return view('tarefas.edit', compact('tarefa','funcionarios'));
-     }
+        return view('tarefas.edit', compact('tarefa', 'funcionarios'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -103,36 +103,36 @@ class TarefaController extends Controller
     public function update(Request $request, string $id)
     {
         DB::beginTransaction();
-        try{
+        try {
 
-        $tarefa = Tarefa::find($id);
+            $tarefa = Tarefa::find($id);
 
-        $tarefa -> update([
-            'titulo' => $request->titulo,
-            'descricao' => $request->descricao,
-            'status_id' => $request->status_id,
-            'data_entrega' => $request->data_entrega,
-        ]);
+            $tarefa->update([
+                'titulo' => $request->titulo,
+                'descricao' => $request->descricao,
+                'status_id' => $request->status_id,
+                'data_entrega' => $request->data_entrega,
+            ]);
 
-     $funcionarios = $request->funcionarios;
+            $funcionarios = $request->funcionarios;
 
-    if($funcionarios == null){
-        $funcionarios = [];
+            if ($funcionarios == null) {
+                $funcionarios = [];
+            }
+
+            $funcionariosSelecionados = array_unique(array_filter($funcionarios));
+
+
+            $tarefa->funcionarios()->sync($funcionariosSelecionados);
+
+            DB::commit();
+            return redirect()->route('tarefa.show', $tarefa->id)
+                ->with('success', 'Tarefa criada com sucesso!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Erro ao atualizar a tarefa: ' . $e->getMessage());
+        }
     }
-
-    $funcionariosSelecionados = array_unique(array_filter($funcionarios));
-
-
-        $tarefa->funcionarios()->sync($funcionariosSelecionados);
-
-        DB::commit();
-        return redirect()->route('tarefa.show',$tarefa->id)
-                         ->with('success', 'Tarefa criada com sucesso!');
-    }catch(Exception $e){
-        DB::rollBack();
-        return redirect()->back()->with('error', 'Erro ao atualizar a tarefa: '.$e->getMessage());
-    }
-}
 
     /**
      * Remove the specified resource from storage.
@@ -140,19 +140,19 @@ class TarefaController extends Controller
     public function destroy(string $id)
     {
         DB::beginTransaction();
-        try{
+        try {
 
 
-        $tarefa = Tarefa::find($id);
-        $tarefa->delete();
+            $tarefa = Tarefa::find($id);
+            $tarefa->delete();
 
-        DB::commit();
-        return redirect()->route('tarefa.index')->with('success', 'Tarefa deletada com sucesso!');
-    }catch(Exception $e){
-        DB::rollBack();
-        return redirect()->route('tarefa.index')->with('error', 'Erro ao deletar a tarefa: '.$e->getMessage());
-}
+            DB::commit();
+            return redirect()->route('tarefa.index')->with('success', 'Tarefa deletada com sucesso!');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('tarefa.index')->with('error', 'Erro ao deletar a tarefa: ' . $e->getMessage());
+        }
 
-}
+    }
 
 }
