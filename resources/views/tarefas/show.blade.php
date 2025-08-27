@@ -67,10 +67,10 @@
         Atualizar dados
       </a>
 
-        <form action="{{route('tarefa.destroy',$tarefa->id)}}" method="POST" onsubmit="return confirm('Deseja realmente deletar esta tarefa?')">
+        <form action="{{route('tarefa.destroy',$tarefa->id)}}" method="POST" onsubmit="return confirm('Deseja realmente deletar esta tarefa?')" id="delete-form-{{$tarefa->id}}">
         @csrf
         @method('DELETE')
-        <button type="submit" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer">
+        <button type="button" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer" onclick="confirmDelete({{$tarefa->id}})">
           Deletar Tarefa
         </button>
       </form>
