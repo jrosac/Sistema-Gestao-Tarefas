@@ -9,5 +9,18 @@
             confirmButtonText: 'OK'
         });
     });
+@endif
+    </script>
+@if(session('error'))
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+
+                    Swal.fire({
+            icon: 'error',
+            title: 'Erro!',
+            text: '{{ session('error') }}',
+            confirmButtonText: 'OK'
+        });
+    });
     </script>
 @endif
