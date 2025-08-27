@@ -39,7 +39,7 @@ class FuncionarioController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->nome);
+
         DB::beginTransaction();
         try{
             $funcionario = Funcionario::create([
@@ -49,7 +49,7 @@ class FuncionarioController extends Controller
             'data_nascimento'=> $request->data_nascimento,
         ]);
 
-        //dd($funcionario);
+
 
         $funcionario->endereco()->create([
             'logradouro'=> $request->logradouro,
@@ -58,7 +58,7 @@ class FuncionarioController extends Controller
             'estado'=> $request->estado,
         ]);
 
-        //dd($funcionario);
+
 
         DB::commit();
 
