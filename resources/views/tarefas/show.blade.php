@@ -31,10 +31,15 @@
             <p class="font-medium text-gray-900">{{$tarefa->data_entrega}}</p>
           </div>
 
-          <div>
-            <p class="text-xs text-gray-500">Status</p>
-            <p class="font-medium text-gray-900">{{$tarefa->status->nome}}</p>
-          </div>
+           <div>
+               <p class="text-xs text-gray-500">Status</p>
+               <p class="font-medium rounded px-2 py-1 max-w-20 mt-2
+                   {{$tarefa->status->nome === 'Feito' ? 'bg-green-100 text-green-800'  :
+                   ($tarefa->status->nome === 'Fazendo' ? 'bg-yellow-100 text-orange-800' :
+                   'bg-red-100 text-red-800') }}">
+                   {{$tarefa->status->nome}}
+               </p>
+           </div>
        </div>
 
       </div>
