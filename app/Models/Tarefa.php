@@ -9,8 +9,6 @@ class Tarefa extends Model
     protected $table = "tarefas";
 
     protected $guarded = [
-        'created_at',
-        'updated_at',
         'id',
     ];
 
