@@ -8,6 +8,11 @@ class Funcionario extends Model
 {
     protected $table = "funcionarios";
 
+    protected $guarded = [
+        "id",
+
+    ];
+
     public function firstname(){
         return explode(" ", $this->nome)[0];
     }

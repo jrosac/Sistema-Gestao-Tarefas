@@ -8,6 +8,10 @@ class Tarefa extends Model
 {
     protected $table = "tarefas";
 
+    protected $guarded = [
+        'id',
+    ];
+
     public function status()
     {
         return $this->belongsTo(Status::class,"status_id");

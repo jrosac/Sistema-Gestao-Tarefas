@@ -21,12 +21,12 @@
 </div>
 
 <div class="mt-8 flex flex-col items-center gap-4">
-    <a href="{{ route('funcionario.cadastro') }}"
+    <a href="{{ route('funcionario.create') }}"
        class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition ">
         Cadastrar Funcionário
     </a>
 
-    <a href="{{ route('tarefa.cadastro') }}"
+    <a href="{{ route('tarefa.create') }}"
        class="bg-green-500 text-white px-11 py-2 rounded-lg hover:bg-green-600 transition  ">
         Cadastrar Tarefa
     </a>

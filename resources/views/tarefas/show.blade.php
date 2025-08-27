@@ -17,22 +17,22 @@
         <div class="space-y-3 text-sm text-gray-700">
           <div>
             <p class="text-xs text-gray-500">Nome</p>
-            <p class="font-medium text-gray-900">Testar ambiente de desenvolvimento</p>
+            <p class="font-medium text-gray-900">{{$tarefa->titulo}}</p>
           </div>
 
           <div>
             <p class="text-xs text-gray-500">Detalhes</p>
-            <p class="font-medium text-gray-900">Utilizar o docker para baixar as dependecias e testar a aplicação em um ambiente isolado</p>
+            <p class="font-medium text-gray-900">{{$tarefa->descricao}}</p>
           </div>
 
           <div>
             <p class="text-xs text-gray-500">Data de Entrega</p>
-            <p class="font-medium text-gray-900">15/04/1990</p>
+            <p class="font-medium text-gray-900">{{$tarefa->data_entrega}}</p>
           </div>
 
           <div>
             <p class="text-xs text-gray-500">Status</p>
-            <p class="font-medium text-gray-900">A fazer</p>
+            <p class="font-medium text-gray-900">{{$tarefa->status->nome}}</p>
           </div>
        </div>
 
@@ -43,29 +43,25 @@
         <h2 class="text-lg font-semibold text-gray-800 mb-4">Funcionários Responsáveis</h2>
 
         <div class="space-y-3 text-sm text-gray-700 mb-4">
-          <ul class="list-disc list-inside space-y-1">
-            <li>Roberto Santos Chagas</li>
-            <li>Juan Guilherme</li>
-            <li>João Rosa Conceição</li>
+
+            <ul class="list-disc list-inside space-y-1">
+            @foreach ($tarefa->funcionarios->pluck('nome') as $nome )
+            <li>{{$nome}}</li>
+            @endforeach
           </ul>
         </div>
 
-        <div class="mt-auto flex justify-center md:justify-start gap-3">
-          <a href="#" class="inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow">
-            Editar Responsáveis
-          </a>
-        </div>
       </div>
 
     </div>
 
     <!-- Ações -->
     <div class="mt-6 flex justify-center gap-3">
-      <a href="{{route("tarefa.atualizacao")}}" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
+      <a href="{{route("tarefa.edit",$tarefa->id)}}" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
         Atualizar dados
       </a>
 
-      <form action="#" method="POST" onsubmit="return confirm('Deseja realmente deletar este funcionário?')">
+        <form action="{{route('tarefa.destroy',$tarefa->id)}}" method="POST" onsubmit="return confirm('Deseja realmente deletar esta tarefa?')">
         @csrf
         @method('DELETE')
         <button type="submit" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer">

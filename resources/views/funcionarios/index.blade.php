@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
 <div class="max-w-6xl mx-auto p-6">
 
         <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Funcionários</h1>
@@ -22,19 +21,27 @@
                 </thead>
 
                 <tbody class="bg-white divide-y divide-gray-100">
+                    @foreach ($funcionarios as $funcionario)
+
+
                     <tr class="hover:bg-gray-50">
+
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-medium">
-                            <a href="/pagina_funcionario" class="hover:underline text-black ">Fulano da Silva</a>
+                    <a href={{route("funcionario.show",$funcionario->id)}} class="hover:underline text-black ">{{$funcionario->nome}}</a>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XX.XXX.XXX-XX</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XX/XX/XXXX</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Desenvolvedor</td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$funcionario->cpf}}</td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$funcionario->data_nascimento}}</td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$funcionario->cargo}}</td>
 
                     </tr>
 
-
+                    @endforeach
 
                 </tbody>
+
             </table>
         </div>
 @endsection

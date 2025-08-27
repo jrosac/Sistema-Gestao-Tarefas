@@ -1,58 +1,47 @@
 <?php
 
+use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\TarefaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('/welcome');
 })->name("home");
 
+//--------------------------------------------------------
 
+// Route::get('/cadastro-funcionario',[FuncionarioController::class,'create'])->name("funcionario.create");
 
-Route::get('/cadastro', function () {
-    return view('/funcionarios/cadastro');
-})->name("funcionario.cadastro");
+// Route::post('/cadastro-funcionario',[FuncionarioController::class,'store'])->name('funcionario.store');
 
-Route::post('/cadastro', function () {
+// Route::get('/index-funcionario',[FuncionarioController::class,'index'])->name('funcionario.index');
 
-    return redirect('/listagem');
-});
+// Route::get('funcionario/{id}',[FuncionarioController::class,'show'])->name('funcionario.show');
 
-Route::get('/listagem', function () {
-    return view('/funcionarios/listagem');
-})->name('funcionario.listagem');
+// Route::get('funcionario/{id}/edit',[FuncionarioController::class,'edit'])->name('funcionario.edit');
 
-Route::get('/pagina_funcionario', function () {
-    return view('/funcionarios/pagina_individual');
-});
+// Route::put('funcionario/{id}',[FuncionarioController::class,'update'])->name('funcionario.update');
 
-Route::get('/atualiza_funcionario', function () {
-    return view('/funcionarios/atualizacao');
-})->name("funcionario.atualizacao");
+// Route::delete('funcionario/{id}',[FuncionarioController::class,'destroy'])->name('funcionario.destroy');
 
-Route::post('/atualiza_funcionario', function () {
+Route::resource('funcionario', FuncionarioController::class);
 
-    return redirect('/pagina_funcionario');
-});
+// -----------------------------------------------------------
 
 
 
-Route::get('/cadastro_tarefa', function () {
-    return view('/tarefas/cadastro');
-})->name("tarefa.cadastro");
+// Route::get('/cadastro-tarefa',[ TarefaController::class,'create'])->name("tarefa.create");
 
-Route::post('/cadastro_tarefa', function () {
+// Route::get('/index-tarefa',[TarefaController::class,'index'] )->name("tarefa.index");
 
-    return redirect('/listagem_tarefa');
-});
+// Route::post('/cadastro-tarefa', [TarefaController::class, 'store'])->name('tarefa.store');
 
-Route::get('/listagem_tarefa', function () {
-    return view('/tarefas/listagem');
-})->name("tarefa.listagem");
+// Route::get('/tarefa/{id}',[TarefaController::class,'show'])->name('tarefa.show');
 
-Route::get('/pagina_individual_tarefa', function () {
-    return view('/tarefas/pagina_individual');
-})->name("tarefa.pagina_individual");
+// Route::get('tarefa/{id}/edit',[TarefaController::class,'edit'])->name('tarefa.edit');
 
-Route::get('/atualiza_tarefa', function () {
-    return view('/tarefas/atualizacao');
-})->name("tarefa.atualizacao");
+// Route::put('tarefa/{id}',[TarefaController::class,'update'])->name('tarefa.update');
+
+// Route::delete('/tarefa/{id}',[TarefaController::class,'destroy'])->name('tarefa.destroy');
+
+Route::resource('tarefa', TarefaController::class);
