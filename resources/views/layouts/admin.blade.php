@@ -16,7 +16,7 @@
             <div class="content-header">
                 <h2 class="title-logo"><a href="{{route("home")}}">Gestão-Tarefas</a></h2>
                 <ul class="list-nav-link">
-                    <li><a href="{{route("funcionario.index")}}" class="nav-link">Funcionarios</a></li>
+                    <li><a href="{{route("funcionario.index")}}" class="nav-link">Funcionários</a></li>
                     <li><a href="{{route("tarefa.index")}}" class="nav-link">Tarefas</a></li>
 
                 </ul>
