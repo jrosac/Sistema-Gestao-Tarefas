@@ -66,7 +66,7 @@ class FuncionarioController extends Controller
             return redirect()->route('funcionario.index')->with('success', 'Funcionário cadastrado com sucesso!');
 
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Erro ao cadastrar funcionário: ' . $e->getMessage());
         }

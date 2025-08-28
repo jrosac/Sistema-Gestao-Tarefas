@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Tarefa;
 use App\Models\Status;
+use Exception;
 
 class TarefaController extends Controller
 {
