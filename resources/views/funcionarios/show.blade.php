@@ -1,0 +1,129 @@
+@extends('layouts.admin')
+
+@section('content')
+
+<x-alert/>
+<div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+  <div class="w-full max-w-7xl bg-white rounded-2xl shadow-lg p-6">
+    <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Página individual do funcionário</h1>
+
+    <hr class="mb-6 border-gray-200">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Informações -->
+      <div class="bg-gray-50 rounded-lg p-5">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Informações do funcionário</h2>
+
+        <div class="space-y-3 text-sm text-gray-700">
+          <div>
+            <p class="text-lg text-gray-600">Nome</p>
+            <p class="font-medium text-gray-900 text-lg" >{{$funcionario->nome}}</p>
+          </div>
+
+          <div>
+            <p class="text-lg text-gray-600">CPF</p>
+            <p class="font-medium text-gray-900 text-lg">{{$funcionario->cpf}}</p>
+          </div>
+
+          <div>
+            <p class="text-lg text-gray-600">Data de nascimento</p>
+            <p class="font-medium text-gray-900 text-lg">{{ \Carbon\Carbon::parse($funcionario->data_nascimento)->format("d/m/Y") }}</p>
+          </div>
+
+          <div>
+            <p class="text-lg text-gray-600">Cargo</p>
+            <p class="font-medium text-gray-900 text-lg">{{$funcionario->cargo}}</p>
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-gray-200">
+            <p class="text-lg font-semibold text-gray-600 mb-2">Endereço</p>
+
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <p class="text-lg text-gray-600">Logradouro</p>
+                <p class="font-medium text-gray-900 text-lg">{{$funcionario->endereco->logradouro}}</p>
+              </div>
+              <div>
+                <p class="text-lg text-gray-600">Número</p>
+                <p class="font-medium text-gray-900 text-lg">{{$funcionario->endereco->numero}}</p>
+              </div>
+              <div>
+                <p class="text-lg text-gray-600">Cidade</p>
+                <p class="font-medium text-gray-900 text-lg">{{$funcionario->endereco->cidade}}</p>
+              </div>
+              <div>
+                <p class="text-lg text-gray-600">Estado</p>
+                <p class="font-medium text-gray-900 text-lg">{{$funcionario->endereco->estado}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarefas -->
+<div class="bg-white rounded-lg p-5 border border-gray-100 shadow-sm">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Tarefas atribuídas</h2>
+
+    @if($funcionario->tarefas->isEmpty())
+        <div>
+            <div class="text-xl pb-3">Este funcionário ainda não possui tarefas atribuídas.</div>
+            <p>Você pode <a href="{{route("tarefa.index")}}" class="text-blue-500 hover:text-blue-800 transition-colors duration-500">visualizar as tarefas existentes</a> ou
+                <a href="{{route("tarefa.create")}}" class="text-blue-500 hover:text-blue-800 transition-colors duration-500">cadastrar uma nova tarefa</a> </p>
+        </div>
+    @else
+            <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-200 divide-y divide-gray-200 text-sm">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Nome</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Detalhes</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Status</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200">
+                @foreach ($funcionario->tarefas as $tarefa)
+                    <tr class="hover:bg-gray-50 transition">
+
+                        <td class="px-6 py-4 whitespace-nowrap text-gray-800 font-semibold"><a href="{{route('tarefa.show',$tarefa->id)}}">{{ $tarefa->titulo }}</a></td>
+                        <td class="px-6 py-4 text-gray-600">{{ $tarefa->descricao }}</td>
+                        <td class="px-6 py-4">
+                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full
+                                {{ $tarefa->status->nome === 'Feito' ? 'bg-green-100 text-green-800' :
+                                   ($tarefa->status->nome === 'Fazendo' ? 'bg-yellow-100 text-orange-800' :
+                                   'bg-red-100 text-red-800') }}">
+                                {{ $tarefa->status->nome }}
+                            </span>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endif
+
+
+    </div>
+
+    <!-- Ações -->
+    <div class="mt-6 flex justify-center gap-3">
+      <a href="{{route("funcionario.edit",$funcionario->id)}}" class="inline-block px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow">
+        Atualizar dados
+      </a>
+
+      <form action="{{route("funcionario.destroy",$funcionario->id)}}" method="POST" onsubmit="return confirm('Deseja realmente deletar este funcionário?')" id="delete-form-{{$funcionario->id}}">
+        @csrf
+        @method('DELETE')
+        <button  type="button" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer" onclick="confirmDelete({{$funcionario->id}})">
+          Deletar funcionário
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+@endsection
+

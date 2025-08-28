@@ -9,3 +9,58 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@layer components {
+
+    /*Container Principal*/
+    .main-container{
+        @apply flex flex-col h-screen bg-gray-100;
+    }
+
+    /*Header*/
+    .header{
+        @apply bg-blue-700 text-white p-4 w-full sticky top-0 z-10;
+    }
+
+    .content-header{
+        @apply max-w-6xl mx-auto flex items-center;
+    }
+
+    .title-logo{
+        @apply text-xl font-bold;
+    }
+
+    .list-nav-link{
+        @apply flex space-x-6 ml-6
+    }
+
+    .nav-link{
+        @apply hover:text-gray-300 transition-colors;
+    }
+
+    /*Página de cadastro*/
+
+    .content{
+        @apply flex-1 max-w-6xl mx-auto p-4;
+    }
+
+    .content-title{
+        @apply text-2xl font-bold mb-4 text-center;
+    }
+
+    .form{
+        @apply bg-white p-6 rounded-lg shadow-md flex flex-col items-center;
+        width: 100%;
+        height: 80%;
+    }
+
+    .form-title{
+        @apply text-xl font-semibold mb-4 text-center;
+    }
+
+    .form-fields{
+        display: flex;
+        flex-direction: row;
+    }
+
+}
