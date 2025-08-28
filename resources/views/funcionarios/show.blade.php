@@ -28,7 +28,7 @@
 
           <div>
             <p class="text-lg text-gray-600">Data de nascimento</p>
-            <p class="font-medium text-gray-900 text-lg">{{$funcionario->data_nascimento}}</p>
+            <p class="font-medium text-gray-900 text-lg">{{ \Carbon\Carbon::parse($funcionario->data_nascimento)->format("d/m/Y") }}</p>
           </div>
 
           <div>

@@ -32,7 +32,7 @@
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$funcionario->cpf}}</td>
 
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$funcionario->data_nascimento}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ \Carbon\Carbon::parse($funcionario->data_nascimento)->format("d/m/Y") }}</td>
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$funcionario->cargo}}</td>
 

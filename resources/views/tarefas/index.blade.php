@@ -33,7 +33,7 @@
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 truncate">{{$tarefa->descricao}}</td>
 
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$tarefa->data_entrega}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ \Carbon\Carbon::parse($tarefa->data_entrega)->format("d/m/Y") }}</td>
 
                         <td class="font-medium rounded px-2 py-1 max-w-20 mt-2
                         {{$tarefa->status->nome === 'Feito' ? 'bg-green-100 text-green-800'  :

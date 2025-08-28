@@ -29,7 +29,7 @@
 
           <div>
             <p class="text-base text-gray-500">Data de Entrega</p>
-            <p class="font-medium text-gray-900 text-base">{{$tarefa->data_entrega}}</p>
+            <p class="font-medium text-gray-900 text-base">{{ \Carbon\Carbon::parse($tarefa->data_entrega)->format("d/m/Y") }}</p>
           </div>
 
            <div>
