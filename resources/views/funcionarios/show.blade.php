@@ -2,6 +2,7 @@
 
 @section('content')
 
+<x-alert/>
 <div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
   <div class="w-full max-w-7xl bg-white rounded-2xl shadow-lg p-6">
     <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Página individual do funcionário</h1>
@@ -27,7 +28,7 @@
 
           <div>
             <p class="text-lg text-gray-600">Data de nascimento</p>
-            <p class="font-medium text-gray-900 text-lg">{{$funcionario->data_nascimento}}</p>
+            <p class="font-medium text-gray-900 text-lg">{{ \Carbon\Carbon::parse($funcionario->data_nascimento)->format("d/m/Y") }}</p>
           </div>
 
           <div>
@@ -64,7 +65,14 @@
 <div class="bg-white rounded-lg p-5 border border-gray-100 shadow-sm">
     <h2 class="text-lg font-semibold text-gray-800 mb-4">Tarefas atribuídas</h2>
 
-    <div class="overflow-x-auto">
+    @if($funcionario->tarefas->isEmpty())
+        <div>
+            <div class="text-xl pb-3">Este funcionário ainda não possui tarefas atribuídas.</div>
+            <p>Você pode <a href="{{route("tarefa.index")}}" class="text-blue-500 hover:text-blue-800 transition-colors duration-500">visualizar as tarefas existentes</a> ou
+                <a href="{{route("tarefa.create")}}" class="text-blue-500 hover:text-blue-800 transition-colors duration-500">cadastrar uma nova tarefa</a> </p>
+        </div>
+    @else
+            <div class="overflow-x-auto">
         <table class="min-w-full border border-gray-200 divide-y divide-gray-200 text-sm">
             <thead class="bg-gray-100">
                 <tr>
@@ -94,6 +102,7 @@
         </table>
     </div>
 </div>
+@endif
 
 
     </div>
@@ -104,10 +113,10 @@
         Atualizar dados
       </a>
 
-      <form action="{{route("funcionario.destroy",$funcionario->id)}}" method="POST" onsubmit="return confirm('Deseja realmente deletar este funcionário?')">
+      <form action="{{route("funcionario.destroy",$funcionario->id)}}" method="POST" onsubmit="return confirm('Deseja realmente deletar este funcionário?')" id="delete-form-{{$funcionario->id}}">
         @csrf
         @method('DELETE')
-        <button type="submit" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer">
+        <button  type="button" class="inline-block px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium shadow cursor-pointer" onclick="confirmDelete({{$funcionario->id}})">
           Deletar funcionário
         </button>
       </form>

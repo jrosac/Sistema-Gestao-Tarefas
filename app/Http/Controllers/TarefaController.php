@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Tarefa;
 use App\Models\Status;
+use Exception;
 
 class TarefaController extends Controller
 {
@@ -127,7 +128,7 @@ class TarefaController extends Controller
 
             DB::commit();
             return redirect()->route('tarefa.show', $tarefa->id)
-                ->with('success', 'Tarefa criada com sucesso!');
+                ->with('success', 'Tarefa atualizada com sucesso!');
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Erro ao atualizar a tarefa: ' . $e->getMessage());
