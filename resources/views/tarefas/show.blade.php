@@ -14,27 +14,27 @@
       <!-- Informações -->
       <x-alert/>
       <div class="bg-gray-50 rounded-lg p-5">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">Informações da tarefa</h2>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Informações da tarefa</h2>
 
         <div class="space-y-3 text-sm text-gray-700">
           <div>
-            <p class="text-xs text-gray-500">Nome</p>
-            <p class="font-medium text-gray-900">{{$tarefa->titulo}}</p>
+            <p class="text-base text-gray-500">Nome</p>
+            <p class="font-medium text-gray-900 text-base">{{$tarefa->titulo}}</p>
           </div>
 
           <div>
-            <p class="text-xs text-gray-500">Detalhes</p>
-            <p class="font-medium text-gray-900">{{$tarefa->descricao}}</p>
+            <p class="text-base text-gray-500">Detalhes</p>
+            <p class="font-medium text-gray-900 text-base">{{$tarefa->descricao}}</p>
           </div>
 
           <div>
-            <p class="text-xs text-gray-500">Data de Entrega</p>
-            <p class="font-medium text-gray-900">{{$tarefa->data_entrega}}</p>
+            <p class="text-base text-gray-500">Data de Entrega</p>
+            <p class="font-medium text-gray-900 text-base">{{$tarefa->data_entrega}}</p>
           </div>
 
            <div>
-               <p class="text-xs text-gray-500">Status</p>
-               <p class="font-medium rounded px-2 py-1 max-w-20 mt-2
+               <p class="text-base text-gray-500">Status</p>
+               <p class="font-medium rounded px-2 py-1 max-w-20 mt-2 text-base
                    {{$tarefa->status->nome === 'Feito' ? 'bg-green-100 text-green-800'  :
                    ($tarefa->status->nome === 'Fazendo' ? 'bg-yellow-100 text-orange-800' :
                    'bg-red-100 text-red-800') }}">
@@ -47,7 +47,7 @@
 
       <!-- Funcionários -->
       <div class="bg-white rounded-lg p-5 border border-gray-100 shadow-sm">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">Funcionários Responsáveis</h2>
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">Funcionários Responsáveis</h2>
 
         @if ($tarefa->funcionarios->isEmpty())
             <div>
@@ -61,7 +61,7 @@
          <div class="space-y-3 text-sm text-gray-700 mb-4">
              <ul class="list-disc list-inside space-y-1">
             @foreach ($tarefa->funcionarios->pluck('nome') as $nome )
-            <li>{{$nome}}</li>
+            <li class="text-lg">{{$nome}}</li>
             @endforeach
             </ul>
          </div>
