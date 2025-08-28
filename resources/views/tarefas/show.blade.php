@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
   <div class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6">
     <h1 class="text-2xl font-bold text-gray-800 text-center mb-4">Página individual da Tarefa</h1>
@@ -44,18 +45,27 @@
 
       </div>
 
-      <!-- Tarefas -->
+      <!-- Funcionários -->
       <div class="bg-white rounded-lg p-5 border border-gray-100 shadow-sm">
         <h2 class="text-lg font-semibold text-gray-800 mb-4">Funcionários Responsáveis</h2>
 
-        <div class="space-y-3 text-sm text-gray-700 mb-4">
+        @if ($tarefa->funcionarios->isEmpty())
+            <div>
+                <div class="text-lg">Esta tarefa ainda não possui funcionários atribuídos.</div>
+                <a href="{{route("funcionario.create")}}"
+                   class="text-blue-500 hover:text-blue-800 transition-colors duration-500">
+                   Cadastre um novo funcionário</a>
 
-            <ul class="list-disc list-inside space-y-1">
+            </div>
+        @else
+         <div class="space-y-3 text-sm text-gray-700 mb-4">
+             <ul class="list-disc list-inside space-y-1">
             @foreach ($tarefa->funcionarios->pluck('nome') as $nome )
             <li>{{$nome}}</li>
             @endforeach
-          </ul>
-        </div>
+            </ul>
+         </div>
+        @endif
 
       </div>
 
