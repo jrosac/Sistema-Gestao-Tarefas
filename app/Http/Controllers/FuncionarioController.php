@@ -66,7 +66,7 @@ class FuncionarioController extends Controller
             return redirect()->route('funcionario.index')->with('success', 'Funcionário cadastrado com sucesso!');
 
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Erro ao cadastrar funcionário: ' . $e->getMessage());
         }
@@ -128,7 +128,7 @@ class FuncionarioController extends Controller
                 }
             }
             DB::commit();
-            return redirect()->route('funcionario.show', $funcionario->id)->with('success', 'Funcionário cadastrado com sucesso!');
+            return redirect()->route('funcionario.show', $funcionario->id)->with('success', 'Funcionário atualizado com sucesso!');
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Erro ao atualizar funcionário: ' . $e->getMessage());

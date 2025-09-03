@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+<x-alert/>
 <div class="max-w-7xl mx-auto p-6">
 
         <h1 class="text-2xl font-semibold text-gray-800 text-center pt-1 pb-8">Listagem de Tarefas</h1>
@@ -33,9 +33,12 @@
 
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700 truncate">{{$tarefa->descricao}}</td>
 
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$tarefa->data_entrega}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ \Carbon\Carbon::parse($tarefa->data_entrega)->format("d/m/Y") }}</td>
 
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{$tarefa->status->nome}}</td>
+                        <td class="font-medium rounded px-2 py-1 max-w-20 mt-2
+                        {{$tarefa->status->nome === 'Feito' ? 'bg-green-100 text-green-800'  :
+                        ($tarefa->status->nome === 'Fazendo' ? 'bg-yellow-100 text-orange-800' :
+                        'bg-red-100 text-red-800') }}">{{$tarefa->status->nome}}</td>
 
                     </tr>
                     @endforeach

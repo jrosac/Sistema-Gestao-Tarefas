@@ -13,6 +13,7 @@
         </h1>
 
         <!-- Formulário -->
+        <x-alert />
 <form action="{{ route('tarefa.store') }}" method="POST" class="space-y-6">
     @csrf
     <div class="text-center mb-6">
