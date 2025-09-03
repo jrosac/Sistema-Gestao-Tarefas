@@ -7,7 +7,7 @@
 
     @vite(["resources/css/app.css","resources/js/app.js"])
 
-    <title>Formulário de cadastro</title>
+    <title>Sistema Gestão de tarefas</title>
 </head>
 <body>
 
